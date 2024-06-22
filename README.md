@@ -1,0 +1,2 @@
+# funNFTs
+Generate Random NFTs 
