@@ -36,10 +36,12 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
   let vrfCoordinatorV2Address, vrfCoordinatorV2Mock, subscriptionId;
   const chainId = network.config.chainId;
-  if (!developmentChains.includes(chainId)) {
+
+  if(developmentChains.includes(chainId)){
+    console.log("enter--0320984-----------------------------------")
     vrfCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock");
 
-
+    
     vrfCoordinatorV2Address = vrfCoordinatorV2Mock.address;
     const transactionResponse = await vrfCoordinatorV2Mock.createSubscription();
     const transactionReceipt = await transactionResponse.wait();
@@ -53,6 +55,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     console.log("not run -------------------------------------------")
     vrfCoordinatorV2Address = networkConfig[chainId].vrfCoordinatorV2;
     subscriptionId = networkConfig[chainId].subscriptionId;
+    console.log("this runnnn--------------")
   }
 
   const arguments = [
